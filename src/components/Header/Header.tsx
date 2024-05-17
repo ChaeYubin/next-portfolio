@@ -19,7 +19,9 @@ export default function Header() {
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span className="ml-3 text-xl">채유빈의 포트폴리오</span>
+            <Link href="/">
+              <span className="ml-3 text-xl">채유빈의 포트폴리오</span>
+            </Link>
           </a>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <Link href="/" className="mr-5 hover:text-gray-900">
