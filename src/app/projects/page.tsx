@@ -1,5 +1,4 @@
 import ProjectItem from "@/components/Projects/ProjectItem";
-// import { Projects } from "@/types/Notion";
 import { Client } from "@notionhq/client";
 
 async function getProjects() {

@@ -10,6 +10,7 @@ import Image from "next/image";
 export default function ProjectItem({ data }: { data: any }) {
   const title = data.properties.Name.title[0].plain_text;
   const githubLink = data.properties.Github.url;
+  const distributionLink = data.properties.DistributionLink.url || null;
   const description = data.properties.Description.rich_text[0].plain_text;
   const imgSrc = data.cover.file?.url || data.cover.external.url;
   const tags = data.properties.Tags.multi_select;
@@ -40,18 +41,24 @@ export default function ProjectItem({ data }: { data: any }) {
   return (
     <div className="project-card">
       <div className="project-img rounded-t-md">
-        <Image src={imgSrc} alt="프로젝트 커버 이미지" fill />
+        <Image objectFit="cover" src={imgSrc} alt="프로젝트 커버 이미지" fill />
       </div>
-      <div className="p-3">
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <h3 className="mt-2 text-xl">{description}</h3>
-        <a href={githubLink}>깃허브 바로가기</a>
-        <h3 className="mt-2">
+      <div className="p-3 min-h-[200px]">
+        <h1 className="text-xl font-bold">{title}</h1>
+        <h3 className="mt-2 mb-2 text-l">{description}</h3>
+        <div>
+          <a href={githubLink}>깃허브 바로가기 </a>
+          {distributionLink && (
+            <>
+              | <a href={distributionLink}>배포 링크 바로가기</a>
+            </>
+          )}
+        </div>
+        <h4 className="mt-2 text-sm grow">
           작업 기간: {startDate}~{endDate} (
           {calculatedPeriod(startDate, endDate)}일)
-        </h3>
-
-        <div className="flex items-start mt-2">
+        </h4>
+        <div className="flex items-start mt-2 text-sm">
           {tags.map((tag: any) => (
             <h1
               className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30"
